@@ -19,13 +19,21 @@ type Boolean struct {
 	Value bool
 }
 
+type ReturnValue struct {
+	Value Object
+}
+
 type Null struct{}
 
 const (
-	INTEGER_OBJ = "INTEGER"
-	BOOLEAN_OBJ = "BOOLEAN"
-	NULL_OBJ    = "NULL"
+	INTEGER_OBJ      = "INTEGER"
+	BOOLEAN_OBJ      = "BOOLEAN"
+	NULL_OBJ         = "NULL"
+	RETURN_VALUE_OBJ = "RETURN_VALUE"
 )
+
+func (rv *ReturnValue) Inspect() string  { return fmt.Sprintf("%d", rv.Value) }
+func (rv *ReturnValue) Type() ObjectType { return RETURN_VALUE_OBJ }
 
 func (i *Integer) Inspect() string  { return fmt.Sprintf("%d", i.Value) }
 func (i *Integer) Type() ObjectType { return INTEGER_OBJ }
